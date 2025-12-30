@@ -657,6 +657,271 @@
           "ModifiedAt": "2025-12-29T02:31:49.3290798Z"
         }
       ]
+    },
+    "TheBowlOfEmbers": {
+      "Id": "fe3a596a-57d8-4359-97ba-b9c5e4a3eb7e",
+      "Name": "TheBowlOfEmbers",
+      "Description": "",
+      "ZoneId": 1045,
+      "CreatedAt": "2025-12-30T16:29:56.6851046Z",
+      "ModifiedAt": "2025-12-30T17:04:45.8970387Z",
+      "VisualizerSettings": {
+        "TimeScale": 50.0,
+        "ClusterThreshold": 0.5,
+        "LastScrollPosition": 630.0,
+        "ShowActionCooldowns": true,
+        "ShowRecheckDuration": true,
+        "SyncEventList": false
+      },
+      "ActionSequences": [],
+      "LogicSequences": []
+    },
+    "ContainmentBayP1T6Extreme": {
+      "Id": "1518065e-07c7-46c0-a428-95b0b7548cff",
+      "Name": "ContainmentBayP1T6Extreme",
+      "Description": "",
+      "ZoneId": 577,
+      "CreatedAt": "2025-12-30T16:29:56.5442646Z",
+      "ModifiedAt": "2025-12-30T17:08:18.5055054Z",
+      "VisualizerSettings": {
+        "TimeScale": 50.0,
+        "ClusterThreshold": 0.5,
+        "LastScrollPosition": 360.0,
+        "ShowActionCooldowns": true,
+        "ShowRecheckDuration": true,
+        "SyncEventList": false
+      },
+      "ActionSequences": [],
+      "LogicSequences": [
+        {
+          "Id": "b1e250cc-5c62-4041-b652-160ceff1aee3",
+          "LogicId": "033b805b-3b79-4c44-922e-d583f98c1763",
+          "Time": 2.04,
+          "Timeout": 10.0,
+          "RecheckDuration": 4.0,
+          "IsEnabled": true,
+          "CreatedAt": "2025-12-30T17:08:01.0393674Z",
+          "ModifiedAt": "2025-12-30T17:08:01.0393674Z"
+        },
+        {
+          "Id": "f6e829c7-f2cf-46f9-b32d-2d4882cb97b7",
+          "LogicId": "40881d15-a3f6-4ad4-8da8-97e29b5719cb",
+          "Time": 5.04,
+          "Timeout": 10.0,
+          "RecheckDuration": 4.0,
+          "IsEnabled": true,
+          "CreatedAt": "2025-12-30T17:07:08.4098082Z",
+          "ModifiedAt": "2025-12-30T17:07:08.4098082Z"
+        },
+        {
+          "Id": "eecd2390-d41e-4ee4-8182-dae75baf63ff",
+          "LogicId": "033b805b-3b79-4c44-922e-d583f98c1763",
+          "Time": 11.0,
+          "Timeout": 10.0,
+          "RecheckDuration": 4.0,
+          "IsEnabled": true,
+          "CreatedAt": "2025-12-30T17:08:12.2704256Z",
+          "ModifiedAt": "2025-12-30T17:08:12.2704256Z"
+        },
+        {
+          "Id": "9ca13dee-6f6a-46b9-a8c6-4e99d0fc3f91",
+          "LogicId": "178301d1-66aa-4541-809c-b6934371157c",
+          "Time": 15.0,
+          "Timeout": 10.0,
+          "RecheckDuration": 4.0,
+          "IsEnabled": true,
+          "CreatedAt": "2025-12-30T17:07:43.0190889Z",
+          "ModifiedAt": "2025-12-30T17:07:43.0190889Z"
+        }
+      ]
+    },
+    "TheDancingPlagueExtreme": {
+      "Id": "6413181c-1ee7-4cac-a62a-b2656ad7ab50",
+      "Name": "TheDancingPlagueExtreme",
+      "Description": "",
+      "ZoneId": 858,
+      "CreatedAt": "2025-12-30T18:37:29.8787263Z",
+      "ModifiedAt": "2025-12-30T18:45:08.9496639Z",
+      "VisualizerSettings": {
+        "TimeScale": 50.0,
+        "ClusterThreshold": 0.5,
+        "LastScrollPosition": 90.0,
+        "ShowActionCooldowns": true,
+        "ShowRecheckDuration": true,
+        "SyncEventList": false
+      },
+      "ActionSequences": [],
+      "LogicSequences": [
+        {
+          "Id": "4048214e-2083-4d1b-8ddd-b396905b04bc",
+          "LogicId": "033b805b-3b79-4c44-922e-d583f98c1763",
+          "Time": 0.9,
+          "Timeout": 30.0,
+          "RecheckDuration": 30.0,
+          "IsEnabled": true,
+          "CreatedAt": "2025-12-30T18:45:02.4846145Z",
+          "ModifiedAt": "2025-12-30T18:45:02.4846145Z"
+        },
+        {
+          "Id": "74f99948-3584-4f88-83e9-9cc09ba4c5d1",
+          "LogicId": "40881d15-a3f6-4ad4-8da8-97e29b5719cb",
+          "Time": 1.66,
+          "Timeout": 10.0,
+          "RecheckDuration": 4.0,
+          "IsEnabled": true,
+          "CreatedAt": "2025-12-30T18:44:34.8012792Z",
+          "ModifiedAt": "2025-12-30T18:44:34.8012795Z"
+        },
+        {
+          "Id": "0dc0ed23-6ea9-4ed7-9f33-993c61186fed",
+          "LogicId": "178301d1-66aa-4541-809c-b6934371157c",
+          "Time": 8.34,
+          "Timeout": 10.0,
+          "RecheckDuration": 4.0,
+          "IsEnabled": true,
+          "CreatedAt": "2025-12-30T18:44:49.6186701Z",
+          "ModifiedAt": "2025-12-30T18:44:49.6186702Z"
+        }
+      ]
+    },
+    "TheDancingPlague": {
+      "Id": "7f13701d-2784-4504-91f3-62c0a7c3783c",
+      "Name": "TheDancingPlague",
+      "Description": "",
+      "ZoneId": 845,
+      "CreatedAt": "2025-12-30T18:37:29.8758967Z",
+      "ModifiedAt": "2025-12-30T19:17:21.692663Z",
+      "VisualizerSettings": {
+        "TimeScale": 50.0,
+        "ClusterThreshold": 0.5,
+        "LastScrollPosition": 4515.0,
+        "ShowActionCooldowns": true,
+        "ShowRecheckDuration": true,
+        "SyncEventList": false
+      },
+      "ActionSequences": [],
+      "LogicSequences": [
+        {
+          "Id": "ec729b59-4b1e-4cf8-8477-04dd93e2c446",
+          "LogicId": "289e77e3-a8d7-4bc7-b384-581d9f7d143e",
+          "Time": 0.74,
+          "Timeout": 10.0,
+          "RecheckDuration": 4.0,
+          "IsEnabled": true,
+          "CreatedAt": "2025-12-30T18:50:50.4111059Z",
+          "ModifiedAt": "2025-12-30T18:50:50.4111059Z"
+        },
+        {
+          "Id": "1282d8c1-3cfb-42e1-947d-16b90eaa55f3",
+          "LogicId": "40881d15-a3f6-4ad4-8da8-97e29b5719cb",
+          "Time": 1.44,
+          "Timeout": 10.0,
+          "RecheckDuration": 4.0,
+          "IsEnabled": true,
+          "CreatedAt": "2025-12-30T18:50:24.4801338Z",
+          "ModifiedAt": "2025-12-30T18:50:24.4801338Z"
+        },
+        {
+          "Id": "2f9e30cb-4147-468e-99f1-58650b4a3ac2",
+          "LogicId": "31b19d86-9929-4072-84a5-c683f9e644e6",
+          "Time": 3.34,
+          "Timeout": 30.0,
+          "RecheckDuration": 30.0,
+          "IsEnabled": true,
+          "CreatedAt": "2025-12-30T18:51:05.7693694Z",
+          "ModifiedAt": "2025-12-30T18:51:05.7693694Z"
+        },
+        {
+          "Id": "d5879618-9de4-4d31-8c47-b66032435b1b",
+          "LogicId": "178301d1-66aa-4541-809c-b6934371157c",
+          "Time": 5.92,
+          "Timeout": 10.0,
+          "RecheckDuration": 4.0,
+          "IsEnabled": true,
+          "CreatedAt": "2025-12-30T18:50:39.3785527Z",
+          "ModifiedAt": "2025-12-30T18:50:39.3785527Z"
+        },
+        {
+          "Id": "13a5f8fd-7daf-4284-a329-9677f015a508",
+          "LogicId": "b3a34a54-c09a-4802-9e77-30db4c823331",
+          "Time": 13.02,
+          "Timeout": 5.0,
+          "RecheckDuration": 4.0,
+          "IsEnabled": true,
+          "CreatedAt": "2025-12-30T18:51:19.2205491Z",
+          "ModifiedAt": "2025-12-30T18:51:19.2205492Z"
+        },
+        {
+          "Id": "869b53d4-c1f8-4183-868a-f5e57056a7df",
+          "LogicId": "22339488-6278-40df-9fe6-ed7d6cc9fa25",
+          "Time": 17.84,
+          "Timeout": 5.0,
+          "RecheckDuration": 4.0,
+          "IsEnabled": true,
+          "CreatedAt": "2025-12-30T18:51:32.2322462Z",
+          "ModifiedAt": "2025-12-30T18:51:32.2322462Z"
+        },
+        {
+          "Id": "86bd17e4-af11-4fad-bbe8-acbc9017b99c",
+          "LogicId": "289e77e3-a8d7-4bc7-b384-581d9f7d143e",
+          "Time": 92.8,
+          "Timeout": 5.0,
+          "RecheckDuration": 4.0,
+          "IsEnabled": true,
+          "CreatedAt": "2025-12-30T19:17:18.3673721Z",
+          "ModifiedAt": "2025-12-30T19:17:18.3673721Z"
+        },
+        {
+          "Id": "042bc82d-62b0-4e87-8043-964f6bfb40af",
+          "LogicId": "22339488-6278-40df-9fe6-ed7d6cc9fa25",
+          "Time": 106.06,
+          "Timeout": 5.0,
+          "RecheckDuration": 4.0,
+          "IsEnabled": true,
+          "CreatedAt": "2025-12-30T19:15:34.786609Z",
+          "ModifiedAt": "2025-12-30T19:15:34.7866095Z"
+        },
+        {
+          "Id": "8bd3e2e2-b7ab-4d25-9569-71df02e3c217",
+          "LogicId": "22339488-6278-40df-9fe6-ed7d6cc9fa25",
+          "Time": 145.4,
+          "Timeout": 5.0,
+          "RecheckDuration": 4.0,
+          "IsEnabled": true,
+          "CreatedAt": "2025-12-30T19:15:45.5361783Z",
+          "ModifiedAt": "2025-12-30T19:15:45.5361783Z"
+        },
+        {
+          "Id": "c9d3d6c8-1a82-41cf-950a-f6fe29f2c19a",
+          "LogicId": "440b4c67-5bc7-44e4-8475-364e6ceaeace",
+          "Time": 212.94,
+          "Timeout": 5.0,
+          "RecheckDuration": 4.0,
+          "IsEnabled": true,
+          "CreatedAt": "2025-12-30T18:55:53.5459525Z",
+          "ModifiedAt": "2025-12-30T18:55:53.5459526Z"
+        },
+        {
+          "Id": "11660278-6167-422f-beb2-264dd2cdb43e",
+          "LogicId": "178301d1-66aa-4541-809c-b6934371157c",
+          "Time": 220.1,
+          "Timeout": 5.0,
+          "RecheckDuration": 4.0,
+          "IsEnabled": true,
+          "CreatedAt": "2025-12-30T19:16:18.8865127Z",
+          "ModifiedAt": "2025-12-30T19:16:18.8865127Z"
+        },
+        {
+          "Id": "64192904-06cc-4c5a-a69e-9f5b28064f38",
+          "LogicId": "178301d1-66aa-4541-809c-b6934371157c",
+          "Time": 250.08,
+          "Timeout": 5.0,
+          "RecheckDuration": 4.0,
+          "IsEnabled": true,
+          "CreatedAt": "2025-12-30T19:16:02.2373174Z",
+          "ModifiedAt": "2025-12-30T19:16:02.2373174Z"
+        }
+      ]
     }
   },
   "Conditions": [
@@ -863,7 +1128,8 @@
         }
       ],
       "CreatedAt": "2025-12-23T20:32:27.07238Z",
-      "ModifiedAt": "2025-12-26T14:40:29.3469382Z"
+      "ModifiedAt": "2025-12-26T14:40:29.3469382Z",
+      "ExcludeFromTargetAccumulation": false
     },
     {
       "Id": "bd6ec48a-0cb2-49c8-89bd-68c9928dcb73",
@@ -1460,7 +1726,8 @@
         }
       ],
       "CreatedAt": "2025-12-23T19:08:59.6436152Z",
-      "ModifiedAt": "2025-12-23T19:08:59.6436152Z"
+      "ModifiedAt": "2025-12-23T19:08:59.6436152Z",
+      "ExcludeFromTargetAccumulation": false
     },
     {
       "Id": "e1d45edf-15e6-4348-9e3d-a71eaeedb791",
@@ -2057,7 +2324,8 @@
         }
       ],
       "CreatedAt": "2025-12-23T19:09:49.9651793Z",
-      "ModifiedAt": "2025-12-23T19:09:49.9651793Z"
+      "ModifiedAt": "2025-12-23T19:09:49.9651793Z",
+      "ExcludeFromTargetAccumulation": false
     },
     {
       "Id": "0835a6f1-22cb-4dcf-8b74-7cacf92d58b5",
@@ -2654,7 +2922,8 @@
         }
       ],
       "CreatedAt": "2025-12-23T19:10:02.1046322Z",
-      "ModifiedAt": "2025-12-26T20:28:44.0541413Z"
+      "ModifiedAt": "2025-12-26T20:28:44.0541413Z",
+      "ExcludeFromTargetAccumulation": false
     },
     {
       "Id": "1d938a42-f824-4f24-9cfa-52d091d54e0c",
@@ -3251,7 +3520,8 @@
         }
       ],
       "CreatedAt": "2025-12-23T19:12:50.3200954Z",
-      "ModifiedAt": "2025-12-26T20:28:47.4468757Z"
+      "ModifiedAt": "2025-12-26T20:28:47.4468757Z",
+      "ExcludeFromTargetAccumulation": false
     },
     {
       "Id": "98979d4a-4522-486f-a33e-e175a23fd183",
@@ -3848,7 +4118,8 @@
         }
       ],
       "CreatedAt": "2025-12-23T19:12:55.8963937Z",
-      "ModifiedAt": "2025-12-23T19:12:55.8963937Z"
+      "ModifiedAt": "2025-12-23T19:12:55.8963937Z",
+      "ExcludeFromTargetAccumulation": false
     },
     {
       "Id": "78f4140a-ad31-4759-ac06-97d105e58281",
@@ -4445,7 +4716,8 @@
         }
       ],
       "CreatedAt": "2025-12-23T19:13:01.9329511Z",
-      "ModifiedAt": "2025-12-23T19:13:01.9329511Z"
+      "ModifiedAt": "2025-12-23T19:13:01.9329511Z",
+      "ExcludeFromTargetAccumulation": false
     },
     {
       "Id": "fe741757-e2a6-43f2-860a-bada307c5255",
@@ -4846,7 +5118,8 @@
         }
       ],
       "CreatedAt": "2025-12-23T19:13:06.4340419Z",
-      "ModifiedAt": "2025-12-23T19:13:06.4340419Z"
+      "ModifiedAt": "2025-12-23T19:13:06.4340419Z",
+      "ExcludeFromTargetAccumulation": false
     },
     {
       "Id": "b248187d-b377-4630-a739-1bf019797bab",
@@ -5247,212 +5520,8 @@
         }
       ],
       "CreatedAt": "2025-12-23T19:13:10.8212557Z",
-      "ModifiedAt": "2025-12-23T19:13:10.8212557Z"
-    },
-    {
-      "Id": "d1413acd-b017-4885-b66e-7bcad0f77d82",
-      "Name": "Placeholder",
-      "Description": "placeholder for logic",
-      "SubConditions": [
-        {
-          "Id": "037caf37-f469-4418-9a19-63fe064b47a1",
-          "Name": "always",
-          "Description": "",
-          "TargetType": 0,
-          "ConditionType": 0,
-          "Parameters": {
-            "BuffParams": {
-              "StatusId": 0,
-              "StatusIds": [],
-              "UseMultipleStatuses": false,
-              "StatusLogic": 1,
-              "CheckDuration": false,
-              "MinDuration": 0.0,
-              "DurationComparison": 3,
-              "CheckStacks": false,
-              "RequiredStacks": 1,
-              "StackComparison": 3,
-              "InvertCheck": false,
-              "RequiredBuffCount": 2,
-              "BuffCountComparison": 3,
-              "StatusTargetOverrides": {},
-              "IsEnabled": true
-            },
-            "HealthParams": {
-              "Percentage": 100.0,
-              "Comparison": 1,
-              "UseRawValue": false,
-              "RawValue": 1000,
-              "IsEnabled": true
-            },
-            "DistanceParams": {
-              "Distance": 0.0,
-              "Comparison": 1,
-              "CheckLineOfSight": false,
-              "IsEnabled": true
-            },
-            "GaugeParams": {
-              "PropertyName": "",
-              "ValueType": 0,
-              "NumericValue": 0.0,
-              "BooleanValue": false,
-              "StringValue": "",
-              "Comparison": 3,
-              "IsEnabled": true
-            },
-            "MpParams": {
-              "Percentage": 100.0,
-              "Comparison": 1,
-              "UseRawValue": false,
-              "RawValue": 1000,
-              "IsEnabled": true
-            },
-            "LastAbilityParams": {
-              "AbilityId": 1,
-              "TimeThreshold": 0.5,
-              "TimeComparison": 1,
-              "IsEnabled": true
-            },
-            "LastGcdParams": {
-              "AbilityId": 1,
-              "TimeThreshold": 0.5,
-              "TimeComparison": 1,
-              "IsEnabled": true
-            },
-            "CooldownParams": {
-              "AbilityId": 1,
-              "TimeThreshold": 0.0,
-              "TimeComparison": 2,
-              "CheckCharges": false,
-              "RequiredCharges": 1,
-              "IsEnabled": true
-            },
-            "ComboParams": {
-              "ComboId": 1,
-              "TimeRemaining": 0.0,
-              "TimeComparison": 3,
-              "IsEnabled": true
-            },
-            "MovementParams": {
-              "ExpectedState": true,
-              "IsEnabled": true
-            },
-            "ChannelingParams": {
-              "IsChanneling": true,
-              "SpecificAbilityId": 0,
-              "IsEnabled": true
-            },
-            "AggroParams": {
-              "HasAggro": true,
-              "AggroPosition": 1,
-              "PositionComparison": 2,
-              "IsEnabled": true
-            },
-            "AlwaysParams": {
-              "ExpectedState": true,
-              "IsEnabled": true
-            },
-            "InCombatParams": {
-              "ExpectedState": true,
-              "IsEnabled": true
-            },
-            "ActionHighlightedParams": {
-              "ActionId": 1,
-              "IsEnabled": true
-            },
-            "IsCastingParams": {
-              "IsCasting": true,
-              "SpecificActionId": 0,
-              "CheckSpecific": false,
-              "IsEnabled": true
-            },
-            "GcdTimeRemainingParams": {
-              "TimeThreshold": 2.5,
-              "Comparison": 1,
-              "IsEnabled": true
-            },
-            "CanInterruptParams": {
-              "CanInterrupt": true,
-              "IsEnabled": true
-            },
-            "EntityIdParams": {
-              "EntityId": 0,
-              "Comparison": 2,
-              "IsEnabled": true
-            },
-            "PartyHpAverageParams": {
-              "Percentage": 50.0,
-              "Comparison": 1,
-              "IsEnabled": true
-            },
-            "PartyHpLowestParams": {
-              "Percentage": 50.0,
-              "Comparison": 1,
-              "LowestMemberCount": 4,
-              "UseLowestMemberPercentage": false,
-              "LowestMemberPercentage": 50.0,
-              "IsEnabled": true
-            },
-            "PartyHpBandsParams": {
-              "CriticalThreshold": 30.0,
-              "LowThreshold": 50.0,
-              "ModerateThreshold": 70.0,
-              "RequiredCritical": 1,
-              "RequiredLow": 3,
-              "RequiredModerate": 5,
-              "BandLogic": 0,
-              "IsEnabled": true
-            },
-            "ActionChargesParams": {
-              "ActionId": 1,
-              "RequiredCharges": 1,
-              "Comparison": 3,
-              "CheckType": 0,
-              "TimeThreshold": 0.0,
-              "TimeComparison": 1,
-              "IsEnabled": true
-            },
-            "AggroCountParams": {
-              "RequiredCount": 1,
-              "CountComparison": 3,
-              "IsEnabled": true
-            },
-            "ShieldParams": {
-              "Percentage": 100.0,
-              "Comparison": 1,
-              "UseRawValue": false,
-              "RawValue": 1000,
-              "IsEnabled": true
-            },
-            "PartyShieldAverageParams": {
-              "Percentage": 20.0,
-              "Comparison": 3,
-              "IsEnabled": true
-            },
-            "VariableParams": {
-              "VariableName": "",
-              "VariableType": 0,
-              "ExpectedBoolValue": true,
-              "ExpectedStringValue": "",
-              "ExpectedNumberValue": 0.0,
-              "Comparison": 2,
-              "StringComparison": 0,
-              "InvertCheck": false,
-              "CheckExists": false,
-              "IsEnabled": true
-            }
-          },
-          "RequiredTargetCount": 1,
-          "TargetCountComparison": 3,
-          "UsePercentageMode": true,
-          "RequiredTargetPercentage": 50.0,
-          "CreatedAt": "2025-12-23T03:10:37.2492872Z",
-          "ModifiedAt": "2025-12-23T03:10:37.2492875Z",
-          "ShouldUseTargetCount": false
-        }
-      ],
-      "CreatedAt": "2025-12-23T19:13:25.5477055Z",
-      "ModifiedAt": "2025-12-29T00:59:07.4717625Z"
+      "ModifiedAt": "2025-12-23T19:13:10.8212557Z",
+      "ExcludeFromTargetAccumulation": false
     },
     {
       "Id": "ca317cc5-00b0-4608-97db-88c10b992e50",
@@ -5853,7 +5922,8 @@
         }
       ],
       "CreatedAt": "2025-12-23T19:13:15.246623Z",
-      "ModifiedAt": "2025-12-29T00:56:40.9288415Z"
+      "ModifiedAt": "2025-12-29T00:56:40.9288415Z",
+      "ExcludeFromTargetAccumulation": false
     },
     {
       "Id": "a94d1fcf-d824-4822-9cf1-08f89d0dcc49",
@@ -6254,7 +6324,8 @@
         }
       ],
       "CreatedAt": "2025-12-23T19:13:20.933871Z",
-      "ModifiedAt": "2025-12-29T00:57:16.2796803Z"
+      "ModifiedAt": "2025-12-29T00:57:16.2796803Z",
+      "ExcludeFromTargetAccumulation": false
     },
     {
       "Id": "ad97a2d3-b4e6-4a72-baaa-56619433f671",
@@ -6459,7 +6530,8 @@
         }
       ],
       "CreatedAt": "2025-12-23T19:13:29.998486Z",
-      "ModifiedAt": "2025-12-29T00:55:03.6752653Z"
+      "ModifiedAt": "2025-12-29T00:55:03.6752653Z",
+      "ExcludeFromTargetAccumulation": false
     },
     {
       "Id": "ca815bcf-a72e-4830-9eb2-5caa292f5b9c",
@@ -6664,7 +6736,8 @@
         }
       ],
       "CreatedAt": "2025-12-23T19:13:34.3606863Z",
-      "ModifiedAt": "2025-12-29T00:55:10.8750139Z"
+      "ModifiedAt": "2025-12-29T00:55:10.8750139Z",
+      "ExcludeFromTargetAccumulation": false
     },
     {
       "Id": "6a1c1c8e-dcfa-42af-b576-a08c4db94ba2",
@@ -7065,7 +7138,8 @@
         }
       ],
       "CreatedAt": "2025-12-26T20:21:16.3700476Z",
-      "ModifiedAt": "2025-12-26T20:24:42.0806429Z"
+      "ModifiedAt": "2025-12-26T20:24:42.0806429Z",
+      "ExcludeFromTargetAccumulation": false
     },
     {
       "Id": "7f0196f0-9891-4391-b377-6fbfc119c732",
@@ -7466,7 +7540,8 @@
         }
       ],
       "CreatedAt": "2025-12-26T20:24:54.2176363Z",
-      "ModifiedAt": "2025-12-26T20:25:29.3846389Z"
+      "ModifiedAt": "2025-12-26T20:25:29.3846389Z",
+      "ExcludeFromTargetAccumulation": false
     },
     {
       "Id": "2ba8c26c-691d-4941-9718-b13f81abd17f",
@@ -7671,7 +7746,8 @@
         }
       ],
       "CreatedAt": "2025-12-29T00:01:10.3269003Z",
-      "ModifiedAt": "2025-12-29T00:15:10.0755471Z"
+      "ModifiedAt": "2025-12-30T18:38:51.026785Z",
+      "ExcludeFromTargetAccumulation": true
     },
     {
       "Id": "5758fce0-5a36-4765-b495-fd3c28b0038f",
@@ -7876,7 +7952,8 @@
         }
       ],
       "CreatedAt": "2025-12-29T00:04:31.2251057Z",
-      "ModifiedAt": "2025-12-29T00:15:22.6657465Z"
+      "ModifiedAt": "2025-12-30T18:38:45.2345612Z",
+      "ExcludeFromTargetAccumulation": true
     },
     {
       "Id": "045151ef-f6f3-4332-a28c-9f4f8f09960e",
@@ -8081,7 +8158,8 @@
         }
       ],
       "CreatedAt": "2025-12-29T00:06:37.5043413Z",
-      "ModifiedAt": "2025-12-29T00:07:47.373504Z"
+      "ModifiedAt": "2025-12-30T18:38:41.9068459Z",
+      "ExcludeFromTargetAccumulation": true
     },
     {
       "Id": "89593ad9-cffb-4b0c-be66-4648b47b2a75",
@@ -8286,7 +8364,8 @@
         }
       ],
       "CreatedAt": "2025-12-29T00:08:37.3449966Z",
-      "ModifiedAt": "2025-12-29T00:10:05.2701198Z"
+      "ModifiedAt": "2025-12-30T18:38:39.9715401Z",
+      "ExcludeFromTargetAccumulation": true
     },
     {
       "Id": "b0625cd8-e34f-4f8a-b847-97fcba3d856e",
@@ -8491,7 +8570,8 @@
         }
       ],
       "CreatedAt": "2025-12-29T00:10:53.1157591Z",
-      "ModifiedAt": "2025-12-29T00:15:28.5906781Z"
+      "ModifiedAt": "2025-12-30T18:38:38.5118881Z",
+      "ExcludeFromTargetAccumulation": true
     },
     {
       "Id": "b1ef8101-bb26-402a-982e-c4af3dcc9db1",
@@ -8696,7 +8776,8 @@
         }
       ],
       "CreatedAt": "2025-12-29T00:12:22.1338188Z",
-      "ModifiedAt": "2025-12-29T00:16:16.6768087Z"
+      "ModifiedAt": "2025-12-30T18:38:37.0849327Z",
+      "ExcludeFromTargetAccumulation": true
     },
     {
       "Id": "03e334ac-d6d4-4b52-b059-a92b82db54ad",
@@ -8901,7 +8982,8 @@
         }
       ],
       "CreatedAt": "2025-12-29T00:14:25.5452358Z",
-      "ModifiedAt": "2025-12-29T00:14:57.1377871Z"
+      "ModifiedAt": "2025-12-30T18:38:34.7377067Z",
+      "ExcludeFromTargetAccumulation": true
     },
     {
       "Id": "7ff2a1ca-c3e1-4107-bc49-00226124ec50",
@@ -9106,7 +9188,8 @@
         }
       ],
       "CreatedAt": "2025-12-29T00:17:00.5047039Z",
-      "ModifiedAt": "2025-12-29T00:17:24.2751068Z"
+      "ModifiedAt": "2025-12-30T18:38:32.7738182Z",
+      "ExcludeFromTargetAccumulation": true
     },
     {
       "Id": "413c2f2d-6e35-494c-b19f-5576ac4618bf",
@@ -9311,7 +9394,8 @@
         }
       ],
       "CreatedAt": "2025-12-29T00:18:09.2961095Z",
-      "ModifiedAt": "2025-12-29T00:18:35.6421779Z"
+      "ModifiedAt": "2025-12-30T18:38:30.9350998Z",
+      "ExcludeFromTargetAccumulation": true
     },
     {
       "Id": "282481a3-c711-45a2-b5e3-69b80c262bec",
@@ -9516,7 +9600,8 @@
         }
       ],
       "CreatedAt": "2025-12-26T14:39:38.6000787Z",
-      "ModifiedAt": "2025-12-29T00:21:10.3207587Z"
+      "ModifiedAt": "2025-12-30T18:38:29.2950467Z",
+      "ExcludeFromTargetAccumulation": true
     },
     {
       "Id": "d4c596c7-fabd-4a45-90f3-8fa4a13db5f3",
@@ -9721,7 +9806,8 @@
         }
       ],
       "CreatedAt": "2025-12-29T00:19:10.0955471Z",
-      "ModifiedAt": "2025-12-29T00:20:28.5564994Z"
+      "ModifiedAt": "2025-12-30T18:38:26.9476778Z",
+      "ExcludeFromTargetAccumulation": true
     },
     {
       "Id": "e4e3d90f-0c21-49cc-82fd-4932425ae22f",
@@ -9926,7 +10012,8 @@
         }
       ],
       "CreatedAt": "2025-12-29T01:02:55.0131645Z",
-      "ModifiedAt": "2025-12-29T01:03:54.922903Z"
+      "ModifiedAt": "2025-12-30T18:38:24.5832105Z",
+      "ExcludeFromTargetAccumulation": true
     }
   ],
   "Logics": [
@@ -10186,7 +10273,7 @@
         }
       ],
       "CreatedAt": "2025-12-23T19:35:13.7386703Z",
-      "ModifiedAt": "2025-12-29T01:05:24.0955573Z",
+      "ModifiedAt": "2025-12-30T16:37:27.893877Z",
       "ExecuteFirstOnly": false
     },
     {
@@ -10424,7 +10511,7 @@
           "SkillbarId": "",
           "TTSText": "",
           "TriggerType": 0,
-          "LogicOperator": 1,
+          "LogicOperator": 0,
           "TargetType": 20,
           "TargetSelectionStrategy": 6,
           "SkipBuffId": 0,
@@ -10445,7 +10532,7 @@
         }
       ],
       "CreatedAt": "2025-12-23T19:34:02.2375996Z",
-      "ModifiedAt": "2025-12-29T01:01:56.2678291Z",
+      "ModifiedAt": "2025-12-30T19:11:53.1415057Z",
       "ExecuteFirstOnly": false
     },
     {
@@ -10454,7 +10541,6 @@
       "Description": "",
       "LogicType": 0,
       "ConditionIds": [
-        "7f0196f0-9891-4391-b377-6fbfc119c732",
         "03e334ac-d6d4-4b52-b059-a92b82db54ad"
       ],
       "ActionTriggers": [
@@ -10489,7 +10575,7 @@
           "SkillbarId": "",
           "TTSText": "",
           "TriggerType": 0,
-          "LogicOperator": 1,
+          "LogicOperator": 0,
           "TargetType": 20,
           "TargetSelectionStrategy": 6,
           "SkipBuffId": 0,
@@ -10510,7 +10596,7 @@
         }
       ],
       "CreatedAt": "2025-12-23T19:34:35.6877707Z",
-      "ModifiedAt": "2025-12-29T01:01:58.9424682Z",
+      "ModifiedAt": "2025-12-30T19:12:06.3006473Z",
       "ExecuteFirstOnly": false
     },
     {
@@ -10618,7 +10704,7 @@
           "SkillbarId": "",
           "TTSText": "",
           "TriggerType": 0,
-          "LogicOperator": 1,
+          "LogicOperator": 0,
           "TargetType": 0,
           "TargetSelectionStrategy": 6,
           "SkipBuffId": 0,
@@ -10639,7 +10725,7 @@
         }
       ],
       "CreatedAt": "2025-12-23T19:40:04.5871087Z",
-      "ModifiedAt": "2025-12-26T20:31:03.9063312Z",
+      "ModifiedAt": "2025-12-30T19:12:12.6886103Z",
       "ExecuteFirstOnly": false
     },
     {
@@ -10812,7 +10898,7 @@
           "SkillbarId": "",
           "TTSText": "",
           "TriggerType": 0,
-          "LogicOperator": 1,
+          "LogicOperator": 0,
           "TargetType": 20,
           "TargetSelectionStrategy": 6,
           "SkipBuffId": 0,
@@ -10833,7 +10919,7 @@
         }
       ],
       "CreatedAt": "2025-12-23T19:17:32.0203395Z",
-      "ModifiedAt": "2025-12-29T01:00:46.5151291Z",
+      "ModifiedAt": "2025-12-30T19:12:20.0758763Z",
       "ExecuteFirstOnly": false
     },
     {
@@ -10940,7 +11026,7 @@
           "SkillbarId": "",
           "TTSText": "",
           "TriggerType": 0,
-          "LogicOperator": 1,
+          "LogicOperator": 0,
           "TargetType": 20,
           "TargetSelectionStrategy": 6,
           "SkipBuffId": 0,
@@ -10961,7 +11047,7 @@
         }
       ],
       "CreatedAt": "2025-12-23T19:15:07.388953Z",
-      "ModifiedAt": "2025-12-23T19:16:57.1198271Z",
+      "ModifiedAt": "2025-12-30T19:12:28.0267386Z",
       "ExecuteFirstOnly": false
     },
     {
@@ -11004,7 +11090,7 @@
           "SkillbarId": "",
           "TTSText": "",
           "TriggerType": 0,
-          "LogicOperator": 1,
+          "LogicOperator": 0,
           "TargetType": 20,
           "TargetSelectionStrategy": 6,
           "SkipBuffId": 0,
@@ -11025,7 +11111,7 @@
         }
       ],
       "CreatedAt": "2025-12-23T19:15:47.6408016Z",
-      "ModifiedAt": "2025-12-23T19:16:10.2035222Z",
+      "ModifiedAt": "2025-12-30T19:12:31.4608676Z",
       "ExecuteFirstOnly": false
     },
     {
@@ -11068,7 +11154,7 @@
           "SkillbarId": "",
           "TTSText": "",
           "TriggerType": 0,
-          "LogicOperator": 1,
+          "LogicOperator": 0,
           "TargetType": 20,
           "TargetSelectionStrategy": 6,
           "SkipBuffId": 0,
@@ -11089,7 +11175,7 @@
         }
       ],
       "CreatedAt": "2025-12-23T19:16:21.5287409Z",
-      "ModifiedAt": "2025-12-23T19:16:47.7316528Z",
+      "ModifiedAt": "2025-12-30T19:12:36.9221511Z",
       "ExecuteFirstOnly": false
     }
   ],
