@@ -1,0 +1,172 @@
+name: Version Bump
+
+on:
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Dry run (no commits or tags)'
+        required: false
+        default: 'false'
+        type: boolean
+
+jobs:
+  bump-versions:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Full history for tag comparison
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Configure git
+        run: |
+          git config --local user.name "github-actions[bot]"
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Get previous tag
+        id: prev_tag
+        run: |
+          # Get the most recent tag, or use initial commit if no tags exist
+          PREV_TAG=$(git describe --tags --abbrev=0 2>/dev/null || git rev-list --max-parents=0 HEAD)
+          echo "Previous reference: $PREV_TAG"
+          echo "prev_tag=$PREV_TAG" >> $GITHUB_OUTPUT
+
+      - name: Find changed timeline files
+        id: changed_files
+        run: |
+          # Find JSON files in timelines/ that changed since last tag
+          CHANGED_FILES=$(git diff --name-only ${{ steps.prev_tag.outputs.prev_tag }} HEAD -- 'timelines/**/*.json' | tr '\n' ' ')
+          echo "Changed files: $CHANGED_FILES"
+          echo "changed_files=$CHANGED_FILES" >> $GITHUB_OUTPUT
+
+          if [ -z "$CHANGED_FILES" ]; then
+            echo "has_changes=false" >> $GITHUB_OUTPUT
+          else
+            echo "has_changes=true" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Bump versions in changed files
+        id: bump
+        if: steps.changed_files.outputs.has_changes == 'true'
+        run: |
+          MANIFEST_UPDATES=""
+
+          for file in ${{ steps.changed_files.outputs.changed_files }}; do
+            if [ -f "$file" ]; then
+              echo "Processing: $file"
+
+              # Extract current version
+              CURRENT_VERSION=$(jq -r '.Version // empty' "$file")
+
+              if [ -z "$CURRENT_VERSION" ]; then
+                echo "  No Version field found, skipping"
+                continue
+              fi
+
+              echo "  Current version: $CURRENT_VERSION"
+
+              # Parse semver components
+              MAJOR=$(echo "$CURRENT_VERSION" | cut -d. -f1)
+              MINOR=$(echo "$CURRENT_VERSION" | cut -d. -f2)
+              PATCH=$(echo "$CURRENT_VERSION" | cut -d. -f3)
+
+              # Increment patch
+              NEW_PATCH=$((PATCH + 1))
+              NEW_VERSION="$MAJOR.$MINOR.$NEW_PATCH"
+
+              echo "  New version: $NEW_VERSION"
+
+              # Update the file
+              jq --arg ver "$NEW_VERSION" '.Version = $ver' "$file" > "$file.tmp"
+              mv "$file.tmp" "$file"
+
+              # Track for manifest update
+              MANIFEST_UPDATES="$MANIFEST_UPDATES$file:$NEW_VERSION\n"
+            fi
+          done
+
+          echo -e "$MANIFEST_UPDATES" > /tmp/manifest_updates.txt
+          echo "bump_complete=true" >> $GITHUB_OUTPUT
+
+      - name: Update manifest.json
+        if: steps.bump.outputs.bump_complete == 'true'
+        run: |
+          MANIFEST_FILE="manifest.json"
+
+          if [ ! -f "$MANIFEST_FILE" ]; then
+            echo "manifest.json not found, creating new one"
+            echo "{}" > "$MANIFEST_FILE"
+          fi
+
+          # Read the manifest updates
+          while IFS=: read -r filepath version; do
+            if [ -n "$filepath" ] && [ -n "$version" ]; then
+              echo "Updating manifest: $filepath -> $version"
+              jq --arg path "$filepath" --arg ver "$version" '.[$path] = $ver' "$MANIFEST_FILE" > "$MANIFEST_FILE.tmp"
+              mv "$MANIFEST_FILE.tmp" "$MANIFEST_FILE"
+            fi
+          done < /tmp/manifest_updates.txt
+
+          echo "Updated manifest.json:"
+          cat "$MANIFEST_FILE"
+
+      - name: Generate new tag version
+        id: new_tag
+        if: steps.changed_files.outputs.has_changes == 'true'
+        run: |
+          # Get current tag version or start at v0.0.0
+          CURRENT_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "v0.0.0")
+
+          # Strip 'v' prefix if present
+          CURRENT_TAG_NUM=${CURRENT_TAG#v}
+
+          # Parse and increment patch
+          MAJOR=$(echo "$CURRENT_TAG_NUM" | cut -d. -f1)
+          MINOR=$(echo "$CURRENT_TAG_NUM" | cut -d. -f2)
+          PATCH=$(echo "$CURRENT_TAG_NUM" | cut -d. -f3)
+
+          NEW_PATCH=$((PATCH + 1))
+          NEW_TAG="v$MAJOR.$MINOR.$NEW_PATCH"
+
+          echo "Current tag: $CURRENT_TAG"
+          echo "New tag: $NEW_TAG"
+          echo "new_tag=$NEW_TAG" >> $GITHUB_OUTPUT
+
+      - name: Commit version changes
+        if: steps.changed_files.outputs.has_changes == 'true' && inputs.dry_run == false
+        run: |
+          git add timelines/**/*.json manifest.json
+          git commit -m "chore: bump versions to ${{ steps.new_tag.outputs.new_tag }}" || echo "No changes to commit"
+
+      - name: Create and push tag
+        if: steps.changed_files.outputs.has_changes == 'true' && inputs.dry_run == false
+        run: |
+          git push origin HEAD
+          git tag -a "${{ steps.new_tag.outputs.new_tag }}" -m "Release ${{ steps.new_tag.outputs.new_tag }}"
+          git push origin "${{ steps.new_tag.outputs.new_tag }}"
+          echo "Created and pushed tag: ${{ steps.new_tag.outputs.new_tag }}"
+
+      - name: Summary
+        run: |
+          echo "## Version Bump Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          if [ "${{ steps.changed_files.outputs.has_changes }}" == "true" ]; then
+            echo "### Changed Files" >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
+            echo "${{ steps.changed_files.outputs.changed_files }}" >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "### New Tag: \`${{ steps.new_tag.outputs.new_tag }}\`" >> $GITHUB_STEP_SUMMARY
+
+            if [ "${{ inputs.dry_run }}" == "true" ]; then
+              echo "" >> $GITHUB_STEP_SUMMARY
+              echo "> **Note:** This was a dry run. No commits or tags were created." >> $GITHUB_STEP_SUMMARY
+            fi
+          else
+            echo "No timeline files changed since last tag." >> $GITHUB_STEP_SUMMARY
+          fi
