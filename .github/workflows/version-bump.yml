@@ -19,7 +19,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0  # Full history for tag comparison
+          fetch-depth: 0
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Configure git
@@ -27,19 +27,55 @@ jobs:
           git config --local user.name "github-actions[bot]"
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-      - name: Get previous tag
-        id: prev_tag
+      - name: Fetch all tags
         run: |
-          # Get the most recent tag, or use initial commit if no tags exist
-          PREV_TAG=$(git describe --tags --abbrev=0 2>/dev/null || git rev-list --max-parents=0 HEAD)
-          echo "Previous reference: $PREV_TAG"
-          echo "prev_tag=$PREV_TAG" >> $GITHUB_OUTPUT
+          git fetch --tags --force
+          echo "Available tags:"
+          git tag --list 'v*' | sort -V | tail -5
+
+      - name: Get current and new version from git tags
+        id: version
+        run: |
+          # Get the latest tag using version sort, default to v1.0.0 if none exist
+          CURRENT_TAG=$(git tag --list 'v*' | sort -V | tail -1)
+          if [ -z "$CURRENT_TAG" ]; then
+            CURRENT_TAG="v1.0.0"
+            echo "No existing tags found, starting at $CURRENT_TAG"
+          fi
+
+          echo "Current tag: $CURRENT_TAG"
+
+          # Strip 'v' prefix and parse semver
+          CURRENT_VERSION=${CURRENT_TAG#v}
+          MAJOR=$(echo "$CURRENT_VERSION" | cut -d. -f1)
+          MINOR=$(echo "$CURRENT_VERSION" | cut -d. -f2)
+          PATCH=$(echo "$CURRENT_VERSION" | cut -d. -f3)
+
+          # Increment patch
+          NEW_PATCH=$((PATCH + 1))
+          NEW_VERSION="$MAJOR.$MINOR.$NEW_PATCH"
+          NEW_TAG="v$NEW_VERSION"
+
+          echo "New version: $NEW_VERSION"
+          echo "New tag: $NEW_TAG"
+
+          echo "current_tag=$CURRENT_TAG" >> $GITHUB_OUTPUT
+          echo "new_version=$NEW_VERSION" >> $GITHUB_OUTPUT
+          echo "new_tag=$NEW_TAG" >> $GITHUB_OUTPUT
 
       - name: Find changed timeline files
         id: changed_files
         run: |
+          PREV_REF="${{ steps.version.outputs.current_tag }}"
+
+          # Check if the tag exists as a real ref, otherwise use initial commit
+          if ! git rev-parse "$PREV_REF" >/dev/null 2>&1; then
+            PREV_REF=$(git rev-list --max-parents=0 HEAD)
+            echo "Tag not found, using initial commit: $PREV_REF"
+          fi
+
           # Find JSON files in timelines/ that changed since last tag
-          CHANGED_FILES=$(git diff --name-only ${{ steps.prev_tag.outputs.prev_tag }} HEAD -- 'timelines/**/*.json' | tr '\n' ' ')
+          CHANGED_FILES=$(git diff --name-only "$PREV_REF" HEAD -- 'timelines/**/*.json' | tr '\n' ' ')
           echo "Changed files: $CHANGED_FILES"
           echo "changed_files=$CHANGED_FILES" >> $GITHUB_OUTPUT
 
@@ -49,52 +85,30 @@ jobs:
             echo "has_changes=true" >> $GITHUB_OUTPUT
           fi
 
-      - name: Bump versions in changed files
-        id: bump
+      - name: Update versions in changed config files
         if: steps.changed_files.outputs.has_changes == 'true'
         run: |
-          MANIFEST_UPDATES=""
+          NEW_VERSION="${{ steps.version.outputs.new_version }}"
 
           for file in ${{ steps.changed_files.outputs.changed_files }}; do
             if [ -f "$file" ]; then
-              echo "Processing: $file"
+              echo "Updating $file to version $NEW_VERSION"
 
-              # Extract current version
-              CURRENT_VERSION=$(jq -r '.Version // empty' "$file")
-
-              if [ -z "$CURRENT_VERSION" ]; then
+              # Check if file has a Version field
+              if jq -e '.Version' "$file" > /dev/null 2>&1; then
+                jq --arg ver "$NEW_VERSION" '.Version = $ver' "$file" > "$file.tmp"
+                mv "$file.tmp" "$file"
+                echo "  Updated Version to $NEW_VERSION"
+              else
                 echo "  No Version field found, skipping"
-                continue
               fi
-
-              echo "  Current version: $CURRENT_VERSION"
-
-              # Parse semver components
-              MAJOR=$(echo "$CURRENT_VERSION" | cut -d. -f1)
-              MINOR=$(echo "$CURRENT_VERSION" | cut -d. -f2)
-              PATCH=$(echo "$CURRENT_VERSION" | cut -d. -f3)
-
-              # Increment patch
-              NEW_PATCH=$((PATCH + 1))
-              NEW_VERSION="$MAJOR.$MINOR.$NEW_PATCH"
-
-              echo "  New version: $NEW_VERSION"
-
-              # Update the file
-              jq --arg ver "$NEW_VERSION" '.Version = $ver' "$file" > "$file.tmp"
-              mv "$file.tmp" "$file"
-
-              # Track for manifest update
-              MANIFEST_UPDATES="$MANIFEST_UPDATES$file:$NEW_VERSION\n"
             fi
           done
 
-          echo -e "$MANIFEST_UPDATES" > /tmp/manifest_updates.txt
-          echo "bump_complete=true" >> $GITHUB_OUTPUT
-
       - name: Update manifest.json
-        if: steps.bump.outputs.bump_complete == 'true'
+        if: steps.changed_files.outputs.has_changes == 'true'
         run: |
+          NEW_VERSION="${{ steps.version.outputs.new_version }}"
           MANIFEST_FILE="manifest.json"
 
           if [ ! -f "$MANIFEST_FILE" ]; then
@@ -102,53 +116,43 @@ jobs:
             echo "{}" > "$MANIFEST_FILE"
           fi
 
-          # Read the manifest updates
-          while IFS=: read -r filepath version; do
-            if [ -n "$filepath" ] && [ -n "$version" ]; then
-              echo "Updating manifest: $filepath -> $version"
-              jq --arg path "$filepath" --arg ver "$version" '.[$path] = $ver' "$MANIFEST_FILE" > "$MANIFEST_FILE.tmp"
+          for file in ${{ steps.changed_files.outputs.changed_files }}; do
+            if [ -f "$file" ]; then
+              echo "Updating manifest: $file -> $NEW_VERSION"
+              jq --arg path "$file" --arg ver "$NEW_VERSION" '.[$path] = $ver' "$MANIFEST_FILE" > "$MANIFEST_FILE.tmp"
               mv "$MANIFEST_FILE.tmp" "$MANIFEST_FILE"
             fi
-          done < /tmp/manifest_updates.txt
+          done
 
           echo "Updated manifest.json:"
           cat "$MANIFEST_FILE"
-
-      - name: Generate new tag version
-        id: new_tag
-        if: steps.changed_files.outputs.has_changes == 'true'
-        run: |
-          # Get current tag version or start at v0.0.0
-          CURRENT_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "v0.0.0")
-
-          # Strip 'v' prefix if present
-          CURRENT_TAG_NUM=${CURRENT_TAG#v}
-
-          # Parse and increment patch
-          MAJOR=$(echo "$CURRENT_TAG_NUM" | cut -d. -f1)
-          MINOR=$(echo "$CURRENT_TAG_NUM" | cut -d. -f2)
-          PATCH=$(echo "$CURRENT_TAG_NUM" | cut -d. -f3)
-
-          NEW_PATCH=$((PATCH + 1))
-          NEW_TAG="v$MAJOR.$MINOR.$NEW_PATCH"
-
-          echo "Current tag: $CURRENT_TAG"
-          echo "New tag: $NEW_TAG"
-          echo "new_tag=$NEW_TAG" >> $GITHUB_OUTPUT
 
       - name: Commit version changes
         if: steps.changed_files.outputs.has_changes == 'true' && inputs.dry_run == false
         run: |
           git add timelines/**/*.json manifest.json
-          git commit -m "chore: bump versions to ${{ steps.new_tag.outputs.new_tag }}" || echo "No changes to commit"
+          git commit -m "chore: bump versions to ${{ steps.version.outputs.new_tag }}" || echo "No changes to commit"
 
       - name: Create and push tag
         if: steps.changed_files.outputs.has_changes == 'true' && inputs.dry_run == false
         run: |
+          NEW_TAG="${{ steps.version.outputs.new_tag }}"
+
+          # Safety check: verify tag doesn't already exist
+          if git rev-parse "$NEW_TAG" >/dev/null 2>&1; then
+            echo "ERROR: Tag $NEW_TAG already exists locally"
+            exit 1
+          fi
+
+          if git ls-remote --tags origin | grep -q "refs/tags/$NEW_TAG$"; then
+            echo "ERROR: Tag $NEW_TAG already exists on remote"
+            exit 1
+          fi
+
           git push origin HEAD
-          git tag -a "${{ steps.new_tag.outputs.new_tag }}" -m "Release ${{ steps.new_tag.outputs.new_tag }}"
-          git push origin "${{ steps.new_tag.outputs.new_tag }}"
-          echo "Created and pushed tag: ${{ steps.new_tag.outputs.new_tag }}"
+          git tag -a "$NEW_TAG" -m "Release $NEW_TAG"
+          git push origin "$NEW_TAG"
+          echo "Created and pushed tag: $NEW_TAG"
 
       - name: Summary
         run: |
@@ -161,7 +165,8 @@ jobs:
             echo "${{ steps.changed_files.outputs.changed_files }}" >> $GITHUB_STEP_SUMMARY
             echo '```' >> $GITHUB_STEP_SUMMARY
             echo "" >> $GITHUB_STEP_SUMMARY
-            echo "### New Tag: \`${{ steps.new_tag.outputs.new_tag }}\`" >> $GITHUB_STEP_SUMMARY
+            echo "### Version: \`${{ steps.version.outputs.new_version }}\`" >> $GITHUB_STEP_SUMMARY
+            echo "### Tag: \`${{ steps.version.outputs.new_tag }}\`" >> $GITHUB_STEP_SUMMARY
 
             if [ "${{ inputs.dry_run }}" == "true" ]; then
               echo "" >> $GITHUB_STEP_SUMMARY
